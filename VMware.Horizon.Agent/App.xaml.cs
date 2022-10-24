@@ -1,4 +1,4 @@
-﻿namespace VMware.Horizon.Client;
+﻿namespace VMware.Horizon.Agent;
 
 /// <summary>
 /// Interaction logic for App.xaml

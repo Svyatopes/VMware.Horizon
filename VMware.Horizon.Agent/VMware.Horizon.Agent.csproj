@@ -4,10 +4,10 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{C3558EF6-0560-4E9D-9E98-398AD850BC65}</ProjectGuid>
+        <ProjectGuid>{017A62C7-AAFE-4017-9107-C3310D9D327B}</ProjectGuid>
         <OutputType>WinExe</OutputType>
-        <RootNamespace>VMware.Horizon.Client</RootNamespace>
-        <AssemblyName>VMware.Horizon.Client</AssemblyName>
+        <RootNamespace>VMware.Horizon.Agent</RootNamespace>
+        <AssemblyName>VMware.Horizon.Agent</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,10 +54,7 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
-        <Compile Include="VmwareChannelClient.cs"/>
-        <Compile Include="VMwareHorizonClientChannelDefinition.cs"/>
-        <Compile Include="VMwareHorizonClientEvents.cs"/>
-        <Compile Include="VMwareHorizonVirtualChannelEvents.cs"/>
+        <Compile Include="VirtualChannelAgent.cs"/>
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>

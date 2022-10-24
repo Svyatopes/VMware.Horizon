@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Client", "VMware.Horizon.Client\VMware.Horizon.Client.csproj", "{C3558EF6-0560-4E9D-9E98-398AD850BC65}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{604E3099-9F87-4745-96CB-413E0E736051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Interop", "Libraries\VMware.Horizon.Interop\VMware.Horizon.Interop.csproj", "{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Helpers", "Libraries\VMware.Horizon.Helpers\VMware.Horizon.Helpers.csproj", "{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.PipeMessages", "Libraries\VMware.Horizon.PipeMessages\VMware.Horizon.PipeMessages.csproj", "{5295D3B4-17E4-495D-97DC-F478A387E304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Agent", "VMware.Horizon.Agent\VMware.Horizon.Agent.csproj", "{017A62C7-AAFE-4017-9107-C3310D9D327B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,26 @@ Global
 		{C3558EF6-0560-4E9D-9E98-398AD850BC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3558EF6-0560-4E9D-9E98-398AD850BC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3558EF6-0560-4E9D-9E98-398AD850BC65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5295D3B4-17E4-495D-97DC-F478A387E304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5295D3B4-17E4-495D-97DC-F478A387E304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5295D3B4-17E4-495D-97DC-F478A387E304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5295D3B4-17E4-495D-97DC-F478A387E304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E} = {604E3099-9F87-4745-96CB-413E0E736051}
+		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC} = {604E3099-9F87-4745-96CB-413E0E736051}
+		{5295D3B4-17E4-495D-97DC-F478A387E304} = {604E3099-9F87-4745-96CB-413E0E736051}
 	EndGlobalSection
 EndGlobal
