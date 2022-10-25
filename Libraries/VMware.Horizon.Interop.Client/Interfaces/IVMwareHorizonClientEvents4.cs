@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 namespace VMware.Horizon.Interop
 {
     [TypeLibType(4352)]
-    [Guid("625AB0BF-582A-4618-AABE-4E4FF2D41BBE")]
+    [Guid("E5EEEA84-01EE-4AEA-8EE2-0912FE19ED0F")]
     [ComImport]
-    public interface IVMwareHorizonClientEvents2 : IVMwareHorizonClientEvents
+    public interface IVMwareHorizonClientEvents4 : IVMwareHorizonClientEvents3
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnStarted();
@@ -46,7 +46,8 @@ namespace VMware.Horizon.Interop
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnReceivedLaunchItems([In] uint serverId,
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In] Array launchItems);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In]
+            Array launchItems);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnLaunchingItem(
@@ -102,28 +103,43 @@ namespace VMware.Horizon.Interop
             [In] int windowId);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnUSBInitializeComplete([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken);
+        new void OnUSBInitializeComplete([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnConnectUSBDeviceComplete([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
-            [In] uint isConnected);
+        new void OnConnectUSBDeviceComplete([In] uint serverId,
+            [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken, [In] uint isConnected);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnUSBDeviceError([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
+        new void OnUSBDeviceError([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
             [MarshalAs(UnmanagedType.BStr)] [In] string errorMessage);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnAddSharedFolderComplete(
+        new void OnAddSharedFolderComplete(
             [In] uint serverId,
             [MarshalAs(UnmanagedType.BStr)] [In] string fullPath,
             [In] uint succeeded,
             [MarshalAs(UnmanagedType.BStr)] [In] string errorMessage);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnRemoveSharedFolderComplete(
+        new void OnRemoveSharedFolderComplete(
             [In] uint serverId,
             [MarshalAs(UnmanagedType.BStr)] [In] string fullPath,
             [In] uint succeeded,
             [MarshalAs(UnmanagedType.BStr)] [In] string errorMessage);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        new void OnFolderCanBeShared([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
+            [In] uint canShare);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        new void OnCDRForcedByAgent([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
+            [In] uint forcedByAgent);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void OnItemLaunchSucceeded2(
+            [In] uint serverId,
+            [In] VmwHorizonLaunchItemType type,
+            [MarshalAs(UnmanagedType.BStr)] [In] string launchItemId,
+            [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken);
     }
 }

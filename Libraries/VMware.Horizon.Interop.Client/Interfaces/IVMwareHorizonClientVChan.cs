@@ -26,6 +26,7 @@ namespace VMware.Horizon.Interop
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void VirtualChannelWrite([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
             [In] uint openHandle,
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)] [In] Array data);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)] [In]
+            Array data);
     }
 }

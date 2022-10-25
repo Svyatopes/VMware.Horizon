@@ -8,7 +8,7 @@ namespace VMware.Horizon.Interop
     [TypeLibType(2)]
     [ClassInterface((short)0)]
     [ComImport]
-    public class VMwareHorizonClientClass : IVMwareHorizonClient, VMwareHorizonClient
+    public class VMwareHorizonClientClass : VMwareHorizonClient
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void Advise([MarshalAs(UnmanagedType.IDispatch)] [In] object events,
@@ -19,7 +19,8 @@ namespace VMware.Horizon.Interop
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void GetServerInfo(
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] out Array serverInfo);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)]
+            out Array serverInfo);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void ConnectToServer(

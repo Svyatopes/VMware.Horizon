@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using VMware.Horizon.Helpers;
+using VMware.Horizon.Client.Helpers;
 
 namespace VMware.Horizon.Client;
 
@@ -21,6 +21,5 @@ public partial class MainWindow
         InitializeComponent();
     }
 
-    private static bool CheckAvailableForRun() =>
-        ClientHelper.IsHorizonClientInstalled();
+    private static bool CheckAvailableForRun() => RegistryHelper.IsHorizonClientInstalled();
 }

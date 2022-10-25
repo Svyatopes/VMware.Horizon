@@ -17,7 +17,8 @@ namespace VMware.Horizon.Interop
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void ConnectEventProc([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
             [In] uint eventType,
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)] [In] Array eventData);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UI1)] [In]
+            Array eventData);
 
         [DispId(3)]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]

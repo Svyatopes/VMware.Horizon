@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
-using VMware.Horizon.Helpers;
+using VMware.Horizon.Agent.Helpers;
 using VMware.Horizon.Interop;
 using VMware.Horizon.PipeMessages;
 
@@ -119,7 +119,7 @@ public partial class MainWindow
     }
 
     private static bool CheckAvailableForRun() =>
-        AgentHelper.IsAgentInstalled();
+        RegistryHelper.IsAgentInstalled();
 
     private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -38,23 +38,24 @@
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
             <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
         </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
         <Reference Include="System.Xaml">
             <RequiredTargetFramework>4.0</RequiredTargetFramework>
         </Reference>
-        <Reference Include="WindowsBase"/>
-        <Reference Include="PresentationCore"/>
-        <Reference Include="PresentationFramework"/>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
         <ApplicationDefinition Include="App.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
-        <Compile Include="VirtualChannelAgent.cs"/>
+        <Compile Include="Helpers\RegistryHelper.cs" />
+        <Compile Include="VirtualChannelAgent.cs" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -83,22 +84,26 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
-        <None Include="packages.config"/>
+        <None Include="App.config" />
+        <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Libraries\VMware.Horizon.Helpers\VMware.Horizon.Helpers.csproj">
             <Project>{87b1262b-c1fb-4c85-b7a2-32beda5db0cc}</Project>
             <Name>VMware.Horizon.Helpers</Name>
         </ProjectReference>
-        <ProjectReference Include="..\Libraries\VMware.Horizon.Interop\VMware.Horizon.Interop.csproj">
+        <ProjectReference Include="..\Libraries\VMware.Horizon.Interop.Agent\VMware.Horizon.Interop.Agent.csproj">
+          <Project>{40d99610-e581-4cf9-8a3a-6b8f9dd5284f}</Project>
+          <Name>VMware.Horizon.Interop.Agent</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\Libraries\VMware.Horizon.Interop.Client\VMware.Horizon.Interop.Client.csproj">
             <Project>{3c4ca46b-a91d-4ca1-b216-50a8cab26d1e}</Project>
-            <Name>VMware.Horizon.Interop</Name>
+            <Name>VMware.Horizon.Interop.Client</Name>
         </ProjectReference>
         <ProjectReference Include="..\Libraries\VMware.Horizon.PipeMessages\VMware.Horizon.PipeMessages.csproj">
             <Project>{5295d3b4-17e4-495d-97dc-f478a387e304}</Project>
             <Name>VMware.Horizon.PipeMessages</Name>
         </ProjectReference>
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

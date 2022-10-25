@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace VMware.Horizon.Interop
 {
-    [Guid("31FC0BCA-3982-4AA1-848D-EE0EB04CC31A")]
     [TypeLibType(4352)]
+    [Guid("D2E97B67-CDB7-4DE5-94BC-B4C727523B2A")]
     [ComImport]
-    public interface IVMwareHorizonClientEvents3 : IVMwareHorizonClientEvents2
+    public interface IVMwareHorizonClientEvents5 : IVMwareHorizonClientEvents4
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnStarted();
@@ -46,7 +46,8 @@ namespace VMware.Horizon.Interop
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnReceivedLaunchItems([In] uint serverId,
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In] Array launchItems);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In]
+            Array launchItems);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         new void OnLaunchingItem(
@@ -127,11 +128,23 @@ namespace VMware.Horizon.Interop
             [MarshalAs(UnmanagedType.BStr)] [In] string errorMessage);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnFolderCanBeShared([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
+        new void OnFolderCanBeShared([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
             [In] uint canShare);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void OnCDRForcedByAgent([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
+        new void OnCDRForcedByAgent([In] uint serverId, [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken,
             [In] uint forcedByAgent);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        new void OnItemLaunchSucceeded2(
+            [In] uint serverId,
+            [In] VmwHorizonLaunchItemType type,
+            [MarshalAs(UnmanagedType.BStr)] [In] string launchItemId,
+            [MarshalAs(UnmanagedType.BStr)] [In] string sessionToken);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void OnReceivedLaunchItems2([In] uint serverId,
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In]
+            Array launchItems);
     }
 }

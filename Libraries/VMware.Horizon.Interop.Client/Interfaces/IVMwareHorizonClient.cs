@@ -18,7 +18,8 @@ namespace VMware.Horizon.Interop
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetServerInfo(
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] out Array serverInfo);
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)]
+            out Array serverInfo);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void ConnectToServer(
@@ -36,8 +37,10 @@ namespace VMware.Horizon.Interop
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void RegisterVirtualChannelConsumer(
-            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In] Array channels,
-            [MarshalAs(UnmanagedType.IDispatch)] [In] object eventsObject,
+            [MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_UNKNOWN)] [In]
+            Array channels,
+            [MarshalAs(UnmanagedType.IDispatch)] [In]
+            object eventsObject,
             [MarshalAs(UnmanagedType.IDispatch)] out object api);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]

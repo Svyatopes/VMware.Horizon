@@ -4,12 +4,12 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}</ProjectGuid>
+        <ProjectGuid>{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>VMware.Horizon.Helpers</RootNamespace>
-        <AssemblyName>VMware.Horizon.Helpers</AssemblyName>
-        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <RootNamespace>VMware.Horizon.Interop.Agent</RootNamespace>
+        <AssemblyName>VMware.Horizon.Interop.Agent</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,8 +38,8 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="BinaryConverters.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="RdpvcBridge.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

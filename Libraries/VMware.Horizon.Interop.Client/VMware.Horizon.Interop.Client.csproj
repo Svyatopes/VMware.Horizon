@@ -8,7 +8,7 @@
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>VMware.Horizon.Interop</RootNamespace>
-        <AssemblyName>VMware.Horizon.Interop</AssemblyName>
+        <AssemblyName>VMware.Horizon.Interop.Client</AssemblyName>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -38,38 +38,37 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="IVMwareHorizonClient.cs"/>
-        <Compile Include="IVMwareHorizonClient2.cs"/>
-        <Compile Include="IVMwareHorizonClient3.cs"/>
-        <Compile Include="IVMwareHorizonClient4.cs"/>
-        <Compile Include="IVMwareHorizonClientAuthInfo.cs"/>
-        <Compile Include="IVMwareHorizonClientAuthInfo2.cs"/>
-        <Compile Include="IVMwareHorizonClientChannelDef.cs"/>
-        <Compile Include="IVMwareHorizonClientEvents.cs"/>
-        <Compile Include="IVMwareHorizonClientEvents2.cs"/>
-        <Compile Include="IVMwareHorizonClientEvents3.cs"/>
-        <Compile Include="IVMwareHorizonClientEvents4.cs"/>
-        <Compile Include="IVMwareHorizonClientEvents5.cs"/>
-        <Compile Include="IVMwareHorizonClientLaunchItemInfo.cs"/>
-        <Compile Include="IVMwareHorizonClientLaunchItemInfo2.cs"/>
-        <Compile Include="IVMwareHorizonClientServerInfo.cs"/>
-        <Compile Include="IVMwareHorizonClientUSBDeviceInfo.cs"/>
-        <Compile Include="IVMwareHorizonClientVChan.cs"/>
-        <Compile Include="IVMwareHorizonClientVChanEvents.cs"/>
+        <Compile Include="Enums\VmwHorizonClientAdviseFlags.cs"/>
+        <Compile Include="Enums\VmwHorizonClientAuthType.cs"/>
+        <Compile Include="Enums\VmwHorizonClientDisplayType.cs"/>
+        <Compile Include="Enums\VmwHorizonClientLaunchFlags.cs"/>
+        <Compile Include="Enums\VmwHorizonClientProtocol.cs"/>
+        <Compile Include="Enums\VmwHorizonClientSeamlessWindowType.cs"/>
+        <Compile Include="Enums\VmwHorizonClientSessionType.cs"/>
+        <Compile Include="Enums\VmwHorizonLaunchItemType.cs"/>
+        <Compile Include="Enums\VmwHorizonServerType.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClient.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClient2.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClient3.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClient4.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientAuthInfo.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientAuthInfo2.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientChannelDef.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientEvents.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientEvents2.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientEvents3.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientEvents4.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientEvents5.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientLaunchItemInfo.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientLaunchItemInfo2.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientServerInfo.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientUSBDeviceInfo.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientVChan.cs"/>
+        <Compile Include="Interfaces\IVMwareHorizonClientVChanEvents.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="RdpvcBridge.cs"/>
         <Compile Include="VirtualChannelStructures.cs"/>
         <Compile Include="VMwareHorizonClient.cs"/>
         <Compile Include="VMwareHorizonClientClass.cs"/>
-        <Compile Include="VmwHorizonClientAdviseFlags.cs"/>
-        <Compile Include="VmwHorizonClientAuthType.cs"/>
-        <Compile Include="VmwHorizonClientDisplayType.cs"/>
-        <Compile Include="VmwHorizonClientLaunchFlags.cs"/>
-        <Compile Include="VmwHorizonClientProtocol.cs"/>
-        <Compile Include="VmwHorizonClientSeamlessWindowType.cs"/>
-        <Compile Include="VmwHorizonClientSessionType.cs"/>
-        <Compile Include="VmwHorizonLaunchItemType.cs"/>
-        <Compile Include="VmwHorizonServerType.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,13 +4,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Client", "VM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{604E3099-9F87-4745-96CB-413E0E736051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Interop", "Libraries\VMware.Horizon.Interop\VMware.Horizon.Interop.csproj", "{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Interop.Client", "Libraries\VMware.Horizon.Interop.Client\VMware.Horizon.Interop.Client.csproj", "{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Helpers", "Libraries\VMware.Horizon.Helpers\VMware.Horizon.Helpers.csproj", "{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.PipeMessages", "Libraries\VMware.Horizon.PipeMessages\VMware.Horizon.PipeMessages.csproj", "{5295D3B4-17E4-495D-97DC-F478A387E304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Agent", "VMware.Horizon.Agent\VMware.Horizon.Agent.csproj", "{017A62C7-AAFE-4017-9107-C3310D9D327B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Interop.Agent", "Libraries\VMware.Horizon.Interop.Agent\VMware.Horizon.Interop.Agent.csproj", "{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +40,15 @@ Global
 		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{017A62C7-AAFE-4017-9107-C3310D9D327B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D99610-E581-4CF9-8A3A-6B8F9DD5284F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E} = {604E3099-9F87-4745-96CB-413E0E736051}
 		{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC} = {604E3099-9F87-4745-96CB-413E0E736051}
 		{5295D3B4-17E4-495D-97DC-F478A387E304} = {604E3099-9F87-4745-96CB-413E0E736051}
+		{40D99610-E581-4CF9-8A3A-6B8F9DD5284F} = {604E3099-9F87-4745-96CB-413E0E736051}
 	EndGlobalSection
 EndGlobal

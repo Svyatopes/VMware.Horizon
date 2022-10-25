@@ -7,13 +7,13 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Button Click="ButtonBase_OnClick"></Button>
-        <Button Grid.Row="1" Click="ButtonBase2_OnClick"></Button>
+        <Button Click="ButtonBase_OnClick" />
+        <Button Grid.Row="1" Click="ButtonBase2_OnClick" />
     </Grid>
 </Window>
