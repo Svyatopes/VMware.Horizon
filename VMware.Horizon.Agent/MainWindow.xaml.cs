@@ -4,7 +4,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
-using VMware.Horizon.Agent.Helpers;
+using VMware.Horizon.Client.Helpers;
+using VMware.Horizon.Helpers;
 using VMware.Horizon.Interop;
 using VMware.Horizon.PipeMessages;
 
@@ -54,13 +55,12 @@ public partial class MainWindow
 
     private async Task SendMessageToVmWare(string text)
     {
-        await _vca.SendMessage(new ChannelCommand(CommandType.Message, new VmWareMessage { Text = text }),
-            typeof(ChannelResponse));
+        await _vca.SendMessage(new ChannelCommand(CommandType.Message, new VmWareMessage { Text = text }));
     }
 
     private void OpenAgent()
     {
-        _vca = new VirtualChannelAgent("VVCAM");
+        _vca = new VirtualChannelAgent(Constants.VirtualChannelName);
         _vca.LogMessage += AgentThread_ThreadMessage;
     }
 
@@ -118,8 +118,7 @@ public partial class MainWindow
         Application.Current.Shutdown();
     }
 
-    private static bool CheckAvailableForRun() =>
-        RegistryHelper.IsAgentInstalled();
+    private static bool CheckAvailableForRun() => RegistryHelper.IsAgentInstalled();
 
     private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {

@@ -25,12 +25,15 @@ public class VirtualChannelAgent
             var er = Marshal.GetLastWin32Error();
             throw new Exception("Could not Open the virtual Channel: " + er);
         }
+
+        Connected = true;
+        StartListeningBackground();
     }
 
-    public IntPtr Handle { get; set; }
-    public object Lock { get; set; }
+    private IntPtr Handle { get; set; }
+    private object Lock { get; }
 
-    public bool Connected { get; private set; }
+    private bool Connected { get; set; }
     public event ThreadMessageCallback LogMessage;
 
     public void Destroy()
@@ -48,9 +51,51 @@ public class VirtualChannelAgent
         }
     }
 
-    public async Task<object> SendMessage(ChannelCommand messageObject, Type returnType)
+    private void StartListeningBackground()
     {
-        return await Task.Run(() =>
+        Task.Run(() =>
+        {
+            while (Connected)
+                lock (Lock)
+                {
+                    var buffer = new byte[10240];
+                    var actualRead = 0;
+
+                    var receiveResult =
+                        RdpvcBridge.VDP_VirtualChannelRead(Handle, 5000, buffer, buffer.Length, ref actualRead);
+                    LogMessage?.Invoke(3, string.Format("VDP_VirtualChannelRead result: {0} - ActualRead: {1}",
+                        receiveResult,
+                        actualRead));
+                    if (!receiveResult)
+                    {
+                        LogMessage?.Invoke(3, "Did not receive a response in a timely fashion or we received an error");
+                        continue;
+                    }
+
+                    var receivedContents = new byte[actualRead];
+                    Buffer.BlockCopy(buffer, 0, receivedContents, 0, actualRead);
+                    var serialisedResponse = BinaryConverters.BinaryToString(receivedContents);
+                    LogMessage?.Invoke(3, $"Received: {serialisedResponse}");
+                    var command = JsonConvert.DeserializeObject(serialisedResponse, typeof(ChannelCommand),
+                        (JsonSerializerSettings)null);
+                    if (command != null)
+                    {
+                        LogMessage?.Invoke(3, "Deserialized command");
+                    }
+
+                    var response = JsonConvert.DeserializeObject(serialisedResponse, typeof(ChannelResponse),
+                        (JsonSerializerSettings)null);
+                    if (response != null)
+                    {
+                        LogMessage?.Invoke(3, "Deserialized response");
+                    }
+                }
+        });
+    }
+
+    public async Task SendMessage(ChannelCommand messageObject)
+    {
+        await Task.Run(() =>
         {
             LogMessage?.Invoke(3, "send requested, awaiting lock.");
 
@@ -62,36 +107,14 @@ public class VirtualChannelAgent
                 var serialisedMessage = JsonConvert.SerializeObject(messageObject);
                 LogMessage?.Invoke(3, $"Sending Message : {serialisedMessage}");
                 var msg = BinaryConverters.StringToBinary(serialisedMessage);
-                var SendResult = RdpvcBridge.VDP_VirtualChannelWrite(Handle, msg, msg.Length, ref written);
+                var sendResult = RdpvcBridge.VDP_VirtualChannelWrite(Handle, msg, msg.Length, ref written);
                 LogMessage?.Invoke(3,
-                    string.Format("Sending Message result: {0} - Written: {1}", SendResult, written));
-                if (!SendResult)
+                    $"Sending Message result: {sendResult} - Written: {written}");
+                if (!sendResult)
                 {
-                    LogMessage?.Invoke(2, "Sending the command was not succesful");
+                    LogMessage?.Invoke(2, "Sending the command was not successful");
                     ChangeConnectivity(false);
-                    return null;
                 }
-
-                var buffer = new byte[10240];
-                var actualRead = 0;
-
-                var ReceiveResult =
-                    RdpvcBridge.VDP_VirtualChannelRead(Handle, 5000, buffer, buffer.Length, ref actualRead);
-                LogMessage?.Invoke(3,
-                    string.Format("VDP_VirtualChannelRead result: {0} - ActualRead: {1}", ReceiveResult,
-                        actualRead));
-                if (!ReceiveResult)
-                {
-                    ChangeConnectivity(false);
-                    LogMessage?.Invoke(3, "Did not receive a response in a timely fashion or we received an error");
-                    return null;
-                }
-
-                var receivedContents = new byte[actualRead];
-                Buffer.BlockCopy(buffer, 0, receivedContents, 0, actualRead);
-                var serialisedResponse = BinaryConverters.BinaryToString(receivedContents);
-                LogMessage?.Invoke(3, string.Format("Received: {0}", serialisedResponse));
-                return JsonConvert.DeserializeObject(serialisedResponse, returnType, (JsonSerializerSettings)null);
             }
         });
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VMware.Horizon.Helpers;
 using VMware.Horizon.Interop;
 using VMware.Horizon.PipeMessages;
 using VMware.Horizon.VirtualChannel.RDPVCBridgeInterop;
@@ -10,7 +11,6 @@ namespace VMware.Horizon.Client;
 public class VMwareHorizonVirtualChannelEvents : IVMwareHorizonClientVChanEvents
 {
     private readonly Action<int, string> _callbackMessage;
-    private uint _mChannelHandle;
 
     private int _mPingTestCurLen;
     private byte[] _mPingTestMsg;
@@ -26,23 +26,28 @@ public class VMwareHorizonVirtualChannelEvents : IVMwareHorizonClientVChanEvents
         var currentEventType =
             (VirtualChannelStructures.ChannelEvents)eventType;
         _callbackMessage.Invoke(3, "ConnectEventProc() called: " + currentEventType);
-        //  SharedObjects.hvm.ThreadMessage?.Invoke(3, "ConnectEventProc() called ");
-
-        if (eventType == (uint)VirtualChannelStructures.ChannelEvents.Connected)
-
+        switch (currentEventType)
         {
-            try
-            {
-                HorizonClientVirtualChannel.VirtualChannelOpen(serverId, sessionToken, "VVCAM",
-                    out _mChannelHandle);
-                _callbackMessage.Invoke(3, "!! VirtualChannelOpen() succeeded");
-            }
-            catch (Exception ex)
-            {
-                _callbackMessage.Invoke(3,
-                    string.Format("VirtualChannelOpen() failed: {0}", ex));
-                _mChannelHandle = 0;
-            }
+            case VirtualChannelStructures.ChannelEvents.Connected:
+                try
+                {
+                    HorizonClientVirtualChannel.VirtualChannelOpen(serverId, sessionToken, Constants.VirtualChannelName,
+                        out var mChannelHandle);
+                    _callbackMessage.Invoke(3, "!! VirtualChannelOpen() succeeded");
+                    VmwareChannelClient.GetInstance()
+                        .RegisterVirtualChannelData(serverId, sessionToken, mChannelHandle);
+                }
+                catch (Exception ex)
+                {
+                    _callbackMessage.Invoke(3,
+                        $"VirtualChannelOpen() failed: {ex}");
+                }
+
+                break;
+
+            case VirtualChannelStructures.ChannelEvents.Disconnected:
+                VmwareChannelClient.GetInstance().VirtualChannelDisconnected(serverId);
+                break;
         }
     }
 
@@ -59,8 +64,7 @@ public class VMwareHorizonVirtualChannelEvents : IVMwareHorizonClientVChanEvents
         var cf =
             (VirtualChannelStructures.ChannelFlags)dataFlags;
         _callbackMessage.Invoke(3,
-            "ReadEventProc(): " + currentEventType + " - Flags: " + cf + " - Length: " +
-            totalLength);
+            $"ReadEventProc(): {currentEventType} - channelHandle {channelHandle} - Flags: {dataFlags} - Length: {totalLength}");
 
         var isFirst = (dataFlags & (uint)VirtualChannelStructures.ChannelFlags.First) != 0;
         var isLast = (dataFlags & (uint)VirtualChannelStructures.ChannelFlags.Last) != 0;
@@ -96,22 +100,26 @@ public class VMwareHorizonVirtualChannelEvents : IVMwareHorizonClientVChanEvents
                         var jo = (JObject)channelCommand.CommandParameters;
                         var sv = jo.ToObject<VmWareMessage>();
                         _callbackMessage.Invoke(1, sv.Text);
-                        HorizonClientVirtualChannel.VirtualChannelWrite(serverId, sessionToken, channelHandle,
-                            BinaryConverters.StringToBinary(
-                                JsonConvert.SerializeObject(new ChannelResponse())));
+                        SendData(serverId, sessionToken, channelHandle, new ChannelResponse());
                         break;
                     case CommandType.Ping:
-                        HorizonClientVirtualChannel.VirtualChannelWrite(serverId, sessionToken, channelHandle,
-                            BinaryConverters.StringToBinary(
-                                JsonConvert.SerializeObject(new ChannelResponse())));
+                        SendData(serverId, sessionToken, channelHandle, new ChannelResponse());
                         break;
                 }
             }
             catch (Exception ex)
             {
                 _callbackMessage.Invoke(3,
-                    string.Format("VirtualChannelWrite failed: {0}", ex));
+                    $"VirtualChannelWrite failed: {ex}");
             }
         }
+    }
+
+    public void SendData(uint serverId,
+        string sessionToken, uint channelHandle, object objToSend)
+    {
+        HorizonClientVirtualChannel.VirtualChannelWrite(serverId, sessionToken, channelHandle,
+            BinaryConverters.StringToBinary(
+                JsonConvert.SerializeObject(objToSend)));
     }
 }

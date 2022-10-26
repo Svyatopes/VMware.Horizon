@@ -54,7 +54,7 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
-        <Compile Include="Helpers\RegistryHelper.cs"/>
+        <Compile Include="VirtualChannel.cs"/>
         <Compile Include="VmwareChannelClient.cs"/>
         <Compile Include="VMwareHorizonClientChannelDefinition.cs"/>
         <Compile Include="VMwareHorizonClientEvents.cs"/>
@@ -91,9 +91,9 @@
         <None Include="packages.config"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Libraries\VMware.Horizon.Helpers\VMware.Horizon.Helpers.csproj">
+        <ProjectReference Include="..\Libraries\VMware.Horizon.Core\VMware.Horizon.Core.csproj">
             <Project>{87b1262b-c1fb-4c85-b7a2-32beda5db0cc}</Project>
-            <Name>VMware.Horizon.Helpers</Name>
+            <Name>VMware.Horizon.Core</Name>
         </ProjectReference>
         <ProjectReference Include="..\Libraries\VMware.Horizon.Interop.Client\VMware.Horizon.Interop.Client.csproj">
             <Project>{3c4ca46b-a91d-4ca1-b216-50a8cab26d1e}</Project>

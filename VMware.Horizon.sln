@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Interop.Client", "Libraries\VMware.Horizon.Interop.Client\VMware.Horizon.Interop.Client.csproj", "{3C4CA46B-A91D-4CA1-B216-50A8CAB26D1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Helpers", "Libraries\VMware.Horizon.Helpers\VMware.Horizon.Helpers.csproj", "{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.Core", "Libraries\VMware.Horizon.Core\VMware.Horizon.Core.csproj", "{87B1262B-C1FB-4C85-B7A2-32BEDA5DB0CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMware.Horizon.PipeMessages", "Libraries\VMware.Horizon.PipeMessages\VMware.Horizon.PipeMessages.csproj", "{5295D3B4-17E4-495D-97DC-F478A387E304}"
 EndProject

@@ -27,27 +27,24 @@ public class VMwareHorizonClientEvents : IVMwareHorizonClientEvents5
 
     public void OnConnecting(object serverInfo)
     {
-        var Info = (IVMwareHorizonClientServerInfo)serverInfo;
+        var info = (IVMwareHorizonClientServerInfo)serverInfo;
         DispatchMessage(3, string.Format("Connecting, Server Address: {0}, ID: {1}, Type:{2} ",
-            Info.serverAddress, Info.serverId, Info.serverType.ToString()));
+            info.serverAddress, info.serverId, info.serverType.ToString()));
     }
 
     public void OnConnectFailed(uint serverId, string errorMessage)
     {
-        DispatchMessage(3, string.Format("Connect Failed, Server ID: {0}, Message: {1}",
-            serverId, errorMessage));
+        DispatchMessage(3, $"Connect Failed, Server ID: {serverId}, Message: {errorMessage}");
     }
 
     public void OnAuthenticationRequested(uint serverId, VmwHorizonClientAuthType authType)
     {
-        DispatchMessage(3, string.Format("Authentication Requested, Server ID: {0}, AuthType: {1}",
-            serverId, authType.ToString()));
+        DispatchMessage(3, $"Authentication Requested, Server ID: {serverId}, AuthType: {authType.ToString()}");
     }
 
     public void OnAuthenticating(uint serverId, VmwHorizonClientAuthType authType, string user)
     {
-        DispatchMessage(3, string.Format("Authenticating, Server ID: {0}, AuthType: {1}, User: {2}",
-            serverId, authType.ToString(), user));
+        DispatchMessage(3, $"Authenticating, Server ID: {serverId}, AuthType: {authType.ToString()}, User: {user}");
     }
 
     public void OnAuthenticationDeclined(uint serverId, VmwHorizonClientAuthType authType)
@@ -60,31 +57,27 @@ public class VMwareHorizonClientEvents : IVMwareHorizonClientEvents5
         int retryAllowed)
     {
         DispatchMessage(3,
-            string.Format(
-                "Authentication Failed, Server ID: {0}, AuthType: {1}, Error: {2}, retry allowed?: {3}",
-                serverId, authType.ToString(), errorMessage, retryAllowed));
+            $"Authentication Failed, Server ID: {serverId}, AuthType: {authType.ToString()}, Error: {errorMessage}, retry allowed?: {retryAllowed}");
     }
 
     public void OnLoggedIn(uint serverId)
     {
-        DispatchMessage(3, string.Format("Logged In, Server ID: {0}", serverId));
+        DispatchMessage(3, $"Logged In, Server ID: {serverId}");
     }
 
     public void OnDisconnected(uint serverId)
     {
-        DispatchMessage(3, string.Format("Disconnected, Server ID: {0}", serverId));
+        DispatchMessage(3, $"Disconnected, Server ID: {serverId}");
     }
 
     public void OnReceivedLaunchItems(uint serverId, Array launchItems)
     {
-        DispatchMessage(3, string.Format("Received Launch Items, Server ID: {0}, Item Count: {1}", serverId,
-            launchItems.Length));
-        var Items = Helpers.GetLaunchItems(launchItems);
-        foreach (var item in Items)
+        DispatchMessage(3, $"Received Launch Items, Server ID: {serverId}, Item Count: {launchItems.Length}");
+        var items = Helpers.GetLaunchItems(launchItems);
+        foreach (var item in items)
         {
             DispatchMessage(3,
-                string.Format("Launch Item: Server ID: {0}, Name: {1}, Type: {2}, ID: {3}", serverId, item.Name,
-                    item.Type.ToString(), item.Id));
+                $"Launch Item: Server ID: {serverId}, Name: {item.Name}, Type: {item.Type.ToString()}, ID: {item.Id}");
         }
     }
 
@@ -92,8 +85,7 @@ public class VMwareHorizonClientEvents : IVMwareHorizonClientEvents5
         VmwHorizonClientProtocol protocol)
     {
         DispatchMessage(3,
-            string.Format("Launching Item, Server ID: {0}, type: {1}, Item ID: {2}, Protocol: {3}", serverId,
-                type.ToString(), launchItemId, protocol.ToString()));
+            $"Launching Item, Server ID: {serverId}, type: {type.ToString()}, Item ID: {launchItemId}, Protocol: {protocol.ToString()}");
     }
 
     public void OnItemLaunchSucceeded(uint serverId, VmwHorizonLaunchItemType type, string launchItemId)

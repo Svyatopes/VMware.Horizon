@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using VMware.Horizon.Client.Helpers;
+using VMware.Horizon.PipeMessages;
 
 namespace VMware.Horizon.Client;
 
@@ -22,4 +23,16 @@ public partial class MainWindow
     }
 
     private static bool CheckAvailableForRun() => RegistryHelper.IsHorizonClientInstalled();
+
+    private void FirstButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        VmwareChannelClient.GetInstance().SendToAllConnectedChannels(new ChannelCommand(CommandType.Message,
+            new VmWareMessage { Text = "First button from client" }));
+    }
+
+    private void SecondButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        VmwareChannelClient.GetInstance().SendToAllConnectedChannels(new ChannelCommand(CommandType.Message,
+            new VmWareMessage { Text = "Second button from client" }));
+    }
 }
